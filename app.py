@@ -1,15 +1,15 @@
-import streamlit as st
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 import nltk
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-import pandas as pd
 
-# Essential NLTK downloads for the cloud
-nltk.download('punkt')
-nltk.download('stopwords')
+# These MUST come before any other logic
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
 
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
 # --- 1. EXPANDED KNOWLEDGE BASE ---
 faq_data = {
     "What is CodeAlpha?": "CodeAlpha is a software development company that provides virtual internship opportunities in AI, Web Dev, and more.",
